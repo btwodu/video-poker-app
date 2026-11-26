@@ -43,7 +43,7 @@ export function Trainer({ game }: { game: BaseGame }) {
 
   return (
     <Page title="Trainer" back={`#/game/${game.id}`}>
-      <Section title={tableName}>
+      <Section title={tableName} felt>
         <div className="scores">
           <div><strong>{stats.attempted}</strong><span>hands</span></div>
           <div><strong>{accuracy === null ? '–' : `${accuracy}%`}</strong><span>accuracy</span></div>
@@ -114,7 +114,7 @@ export function Trainer({ game }: { game: BaseGame }) {
         )}
         {stats.attempted > 0 && (
           <p className="small muted">
-            Mistakes so far have given up {stats.evLost.toFixed(2)} bets of expected return over {stats.attempted} hand{stats.attempted === 1 ? '' : 's'}
+            Mistakes so far have given up {stats.evLost.toFixed(2)} bets of expected return over {stats.attempted} hand{stats.attempted === 1 ? '' : 's'}{' '}
             ({((stats.evLost / stats.attempted) * 100).toFixed(2)}% of each bet on average).
           </p>
         )}

@@ -1,13 +1,12 @@
 import type { ReactNode } from 'react';
 import { SOURCES } from '../data';
 import type { Preference } from '../data/types';
-import { LEVEL_BADGE } from '../games/preference';
+import { LEVEL_TEXT } from '../games/preference';
 
 export function Badge({ pref, showReason = true }: { pref: Preference; showReason?: boolean }) {
-  const badge = LEVEL_BADGE[pref.level];
   return (
     <div className={`badge badge-${pref.level}`}>
-      <span className="badge-label">{badge.icon} {badge.text}</span>
+      <span className="badge-label">{LEVEL_TEXT[pref.level]}</span>
       {showReason && <span className="badge-reason">{pref.reason}</span>}
     </div>
   );
@@ -25,9 +24,9 @@ export function Page({ title, back = '#/', children }: { title: string; back?: s
   );
 }
 
-export function Section({ title, children }: { title: string; children: ReactNode }) {
+export function Section({ title, children, felt = false }: { title: string; children: ReactNode; felt?: boolean }) {
   return (
-    <section className="card">
+    <section className={felt ? 'card felt' : 'card'}>
       <h2>{title}</h2>
       {children}
     </section>

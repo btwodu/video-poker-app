@@ -8,22 +8,20 @@ const RANK: Level[] = ['preferred', 'good', 'situational', 'unknown', 'pass'];
 
 function Tile({ game, goal }: { game: Game; goal: GoalId }) {
   const pref = targetPreference(game, goal);
+  const detail = game.kind === 'base'
+    ? `${game.target.label} · ${game.target.volatility}`
+    : `${game.tileHeadline} · ${game.tileNote}`;
   return (
     <a className={`tile tile-${pref.level}`} href={`#/game/${game.id}`}>
-      <span className="tile-name">{game.name}</span>
-      {game.kind === 'base' ? (
-        <>
-          <span className="tile-line">{game.target.label} target</span>
-          <span className="tile-rtp">{formatRtp(game.target.rtp)}</span>
-          <span className="tile-line muted">{game.target.volatility}</span>
-        </>
-      ) : (
-        <>
-          <span className="tile-line">{game.tileHeadline}</span>
-          <span className="tile-line muted">{game.tileNote}</span>
-        </>
-      )}
-      <Badge pref={pref} />
+      <span className="tile-main">
+        <span className="tile-name">{game.name}</span>
+        <span className="tile-line">{detail}</span>
+      </span>
+      <span className="tile-side">
+        {game.kind === 'base' && <span className="tile-rtp">{formatRtp(game.target.rtp)}</span>}
+        <Badge pref={pref} showReason={false} />
+      </span>
+      <span className="tile-reason">{pref.reason}</span>
     </a>
   );
 }
@@ -37,9 +35,10 @@ export function Home({ goal, setGoal }: { goal: GoalId; setGoal: (g: GoalId) => 
   return (
     <div className="page">
       <header className="home-header">
-        <h1>Casino Rule Book</h1>
+        <span className="eyebrow">Video Poker</span>
+        <h1>Rule Book</h1>
         <label className="goal">
-          <span>My goal</span>
+          <span>Goal</span>
           <select value={goal} onChange={(e) => setGoal(e.target.value as GoalId)}>
             {GOALS.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}
           </select>

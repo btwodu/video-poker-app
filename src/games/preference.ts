@@ -5,12 +5,8 @@ import type { MatchResult } from './paytable';
 
 const ORDER: Level[] = ['preferred', 'good', 'situational', 'pass'];
 
-export const LEVEL_BADGE: Record<Level, { icon: string; text: string }> = {
-  preferred: { icon: '⭐', text: 'PREFERRED' },
-  good: { icon: '✓', text: 'GOOD' },
-  situational: { icon: '⚠', text: 'SITUATIONAL' },
-  pass: { icon: '✕', text: 'PASS' },
-  unknown: { icon: '?', text: 'UNKNOWN' },
+export const LEVEL_TEXT: Record<Level, string> = {
+  preferred: 'PREFERRED', good: 'GOOD', situational: 'SITUATIONAL', pass: 'PASS', unknown: 'UNKNOWN',
 };
 
 /** Preference for a game's benchmark configuration under a goal. */
