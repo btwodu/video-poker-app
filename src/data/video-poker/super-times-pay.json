@@ -1,0 +1,24 @@
+{
+  "id": "super-times-pay",
+  "kind": "feature",
+  "name": "Super Times Pay",
+  "tileHeadline": "Base game + multiplier",
+  "tileNote": "Not its own paytable",
+  "summary": "A multiplier feature added to an ordinary base game. Judge the base paytable first — Super Times Pay only adds the multiplier on top.",
+  "facts": [
+    { "label": "Cost", "value": "A sixth coin per hand turns the feature on", "sources": ["woo-stp"] },
+    { "label": "Multiplier", "value": "Appears about once every 15 deals; average 4.05×", "sources": ["woo-stp"] },
+    { "label": "On 9/6 Jacks or Better", "value": "99.82% combined return (base game alone 99.54%)", "sources": ["woo-stp"] },
+    { "label": "Other base paytables", "value": "Exact combined return not in the rulebook", "sources": [] },
+    { "label": "Variance", "value": "Published as about 51% more standard deviation than the base game", "sources": ["woo-stp"] },
+    { "label": "Strategy", "value": "Play the base game's strategy; train on the base game tile", "sources": [] }
+  ],
+  "wager": { "coinsPerHand": 6, "coinsNote": "5 coins + 1 feature coin", "handOptions": [1, 3, 5, 10], "defaultHands": 3 },
+  "preference": {
+    "preserve": { "level": "situational", "reason": "Extra coin and bigger swings; only on a strong base paytable" },
+    "return": { "level": "good", "reason": "Adds about 0.28 points to 9/6 Jacks (99.82%)" },
+    "state": { "level": "pass", "reason": "Multiplier is random each deal — nothing is left behind" },
+    "rewards": { "level": "good", "reason": "Six coins per hand raises coin-in; check total wager" },
+    "practice": { "level": "situational", "reason": "Same strategy as the base game — train that instead" }
+  }
+}

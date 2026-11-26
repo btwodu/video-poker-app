@@ -1,0 +1,66 @@
+{
+  "id": "jacks-or-better",
+  "kind": "base",
+  "name": "Jacks or Better",
+  "rules": { "family": "jacks", "minHighPair": "J" },
+  "rows": [
+    { "key": "royal", "label": "Royal Flush" },
+    { "key": "straightFlush", "label": "Straight Flush" },
+    { "key": "fourOfAKind", "label": "Four of a Kind" },
+    { "key": "fullHouse", "label": "Full House" },
+    { "key": "flush", "label": "Flush" },
+    { "key": "straight", "label": "Straight" },
+    { "key": "threeOfAKind", "label": "Three of a Kind" },
+    { "key": "twoPair", "label": "Two Pair" },
+    { "key": "highPair", "label": "Jacks or Better" }
+  ],
+  "keyRows": ["fullHouse", "flush"],
+  "target": {
+    "id": "jacks-96",
+    "label": "9/6",
+    "pays": { "royal": 800, "straightFlush": 50, "fourOfAKind": 25, "fullHouse": 9, "flush": 6, "straight": 4, "threeOfAKind": 3, "twoPair": 2, "highPair": 1 },
+    "rtp": 0.995439,
+    "variance": 19.5147,
+    "volatility": "Lower variance",
+    "volatilityNote": "Two pair pays 2 and quads only 25, so results swing less than bonus games.",
+    "sources": ["solver", "woo-job"]
+  },
+  "variants": [
+    { "id": "jacks-95", "label": "9/5", "diff": { "flush": 5 }, "rtp": 0.984498, "variance": 19.4956, "sources": ["solver", "woo-job"] },
+    { "id": "jacks-86", "label": "8/6", "diff": { "fullHouse": 8 }, "rtp": 0.983927, "variance": 19.3401, "sources": ["solver", "woo-job"] },
+    { "id": "jacks-85", "label": "8/5", "diff": { "fullHouse": 8, "flush": 5 }, "rtp": 0.972984, "variance": 19.3233, "sources": ["solver", "woo-job"] },
+    { "id": "jacks-75", "label": "7/5", "diff": { "fullHouse": 7, "flush": 5 }, "rtp": 0.961472, "variance": 19.1719, "sources": ["solver", "woo-job"] },
+    { "id": "jacks-65", "label": "6/5", "diff": { "fullHouse": 6, "flush": 5 }, "rtp": 0.949961, "variance": 19.0447, "sources": ["solver", "woo-job"] }
+  ],
+  "tileNote": "Bankroll Preservation",
+  "preference": {
+    "preserve": { "level": "preferred", "reason": "High return with lower variance" },
+    "return": { "level": "good", "reason": "99.54% — just under break-even" },
+    "state": { "level": "pass", "reason": "No persistent state to hunt in this game" },
+    "rewards": { "level": "good", "reason": "Low cost per dollar of coin-in" },
+    "practice": { "level": "preferred", "reason": "The foundation strategy — learn this first" }
+  },
+  "strategy": {
+    "title": "9/6 Jacks — core hold order",
+    "note": "Abbreviated card: the first line that fits your hand is usually the play. Every example is checked by the solver; the trainer is exact.",
+    "sources": ["solver"],
+    "lines": [
+      { "text": "Four of a kind, straight flush, royal flush", "example": { "hand": "Ks Kh Kd Kc 3s", "hold": "Ks Kh Kd Kc" } },
+      { "text": "Four to a royal — even breaking a made flush", "example": { "hand": "As Ks Qs Js 4s", "hold": "As Ks Qs Js" } },
+      { "text": "Three of a kind, straight, flush, full house", "example": { "hand": "9c 9d 9h Ks 4d", "hold": "9c 9d 9h" } },
+      { "text": "Four to a straight flush", "example": { "hand": "5h 6h 7h 8h 8s", "hold": "5h 6h 7h 8h" } },
+      { "text": "Two pair", "example": { "hand": "Jc Jd 4s 4h As", "hold": "Jc Jd 4s 4h" } },
+      { "text": "High pair (jacks or better) — over four to a flush", "example": { "hand": "Kc Kd 2c 5c 9c", "hold": "Kc Kd" } },
+      { "text": "Three to a royal", "example": { "hand": "Kh Qh Th 7c 3d", "hold": "Kh Qh Th" } },
+      { "text": "Four to a flush — over a low pair", "example": { "hand": "8c 8d 2c 5c Kc", "hold": "8c 2c 5c Kc" } },
+      { "text": "Low pair — over four to a straight", "example": { "hand": "8c 8d 9h Ts Jd", "hold": "8c 8d" } },
+      { "text": "Four to an outside straight", "example": { "hand": "8c 9d Th Js 2d", "hold": "8c 9d Th Js" } },
+      { "text": "Two suited high cards", "example": { "hand": "Kh Jh 8c 5d 3s", "hold": "Kh Jh" } },
+      { "text": "Three to a straight flush", "example": { "hand": "5h 6h 7h Kc Jd", "hold": "5h 6h 7h" } },
+      { "text": "Two unsuited high cards — with three, keep the lowest two", "example": { "hand": "Ac Kd Js 7h 3c", "hold": "Kd Js" } },
+      { "text": "Suited 10 with J, Q or K", "example": { "hand": "Tc Jc 7d 4h 2s", "hold": "Tc Jc" } },
+      { "text": "One high card", "example": { "hand": "Kc 9d 7h 4s 2c", "hold": "Kc" } },
+      { "text": "Otherwise discard everything", "example": { "hand": "9c 7d 5h 3s 2d", "hold": "" } }
+    ]
+  }
+}

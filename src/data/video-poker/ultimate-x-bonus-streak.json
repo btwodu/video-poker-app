@@ -1,0 +1,58 @@
+{
+  "id": "ultimate-x-bonus-streak",
+  "kind": "feature",
+  "name": "Ultimate X Bonus Streak",
+  "tileHeadline": "State opportunity",
+  "tileNote": "State Hunting",
+  "summary": "Multi-hand video poker where a qualifying win starts a stream of multipliers on that line for the following hands. Streams abandoned by a previous player stay on screen.",
+  "facts": [
+    { "label": "Feature bet", "value": "10 credits per hand (5 bet + 5 fee) turns the feature on", "sources": ["woo-bonus-streak-rules"] },
+    { "label": "Persistent state", "value": "A qualifying win awards multipliers for the next 2 to 5 hands on that line", "sources": ["woo-bonus-streak-rules"] },
+    { "label": "Counting", "value": "A line showing no multiplier counts as 1 in every total", "sources": ["woo-bonus-streak-vulturing"] },
+    { "label": "Edge", "value": "The published rule says when play is favourable. Exact edge unknown.", "sources": ["woo-bonus-streak-vulturing"] }
+  ],
+  "wager": { "coinsPerHand": 10, "coinsNote": "10 credits per hand with the feature on", "handOptions": [3, 5, 10], "defaultHands": 10 },
+  "preference": {
+    "preserve": { "level": "pass", "reason": "Published returns are 97–99% without abandoned multipliers" },
+    "return": { "level": "pass", "reason": "Below 99% on the published tables unless state qualifies" },
+    "state": { "level": "preferred", "reason": "Published entry thresholds for abandoned multipliers" },
+    "rewards": { "level": "situational", "reason": "Double coin-in per hand — check total wager" },
+    "practice": { "level": "pass", "reason": "No trainer for the multiplier strategy" }
+  },
+  "state": {
+    "fixedPrompt": "Which machine is this? The rule only applies to the exact game, paytable and hand count.",
+    "inputs": [
+      { "key": "next1", "label": "Next hand — total of all multipliers", "help": "Add the first multiplier on every line. No multiplier counts as 1." },
+      { "key": "next2", "label": "Next two hands — total", "help": "Next-hand total plus the total of the multipliers queued second." },
+      { "key": "next3", "label": "Next three hands — total", "help": "Next-two total plus the total of the multipliers queued third." }
+    ],
+    "configs": [
+      {
+        "id": "ddb-85-10play", "label": "10-play · Double Double Bonus 8/5", "hands": 10,
+        "rules": [ { "input": "next1", "gte": 21, "deals": 1 }, { "input": "next2", "gte": 34, "deals": 2 }, { "input": "next3", "gte": 43, "deals": 3 } ],
+        "sources": ["woo-bonus-streak-vulturing"]
+      },
+      {
+        "id": "ddb-65-5play", "label": "5-play · Double Double Bonus 6/5", "hands": 5,
+        "rules": [ { "input": "next1", "gte": 11, "deals": 1 }, { "input": "next2", "gte": 18, "deals": 2 }, { "input": "next3", "gte": 26, "deals": 3 } ],
+        "sources": ["woo-bonus-streak-vulturing"]
+      },
+      {
+        "id": "dw-3play", "label": "3-play · Deuces Wild 25/15/10/4/3/2/2", "hands": 3,
+        "rules": [ { "input": "next1", "gte": 7, "deals": 1 }, { "input": "next2", "gte": 10, "deals": 2 } ],
+        "sources": ["woo-bonus-streak-vulturing"]
+      },
+      {
+        "id": "dw-5play", "label": "5-play · Deuces Wild 25/15/10/4/3/2/2", "hands": 5,
+        "rules": [ { "input": "next1", "gte": 11, "deals": 1 }, { "input": "next2", "gte": 15, "deals": 2 }, { "input": "next3", "gte": 25, "deals": 3 } ],
+        "sources": ["woo-bonus-streak-vulturing"]
+      },
+      {
+        "id": "dw-10play", "label": "10-play · Deuces Wild 25/15/10/4/3/2/2", "hands": 10,
+        "rules": [ { "input": "next1", "gte": 21, "deals": 1 }, { "input": "next2", "gte": 32, "deals": 2 }, { "input": "next3", "gte": 44, "deals": 3 } ],
+        "sources": ["woo-bonus-streak-vulturing"]
+      }
+    ],
+    "noRuleText": "No sourced entry rule for this configuration. Thresholds from another game, paytable or hand count are not reused."
+  }
+}

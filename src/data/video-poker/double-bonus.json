@@ -1,0 +1,67 @@
+{
+  "id": "double-bonus",
+  "kind": "base",
+  "name": "Double Bonus",
+  "rules": { "family": "jacks", "minHighPair": "J" },
+  "rows": [
+    { "key": "royal", "label": "Royal Flush" },
+    { "key": "straightFlush", "label": "Straight Flush" },
+    { "key": "fourAces", "label": "Four Aces" },
+    { "key": "four2s4s", "label": "Four 2s–4s" },
+    { "key": "four5sK", "label": "Four 5s–Kings" },
+    { "key": "fullHouse", "label": "Full House" },
+    { "key": "flush", "label": "Flush" },
+    { "key": "straight", "label": "Straight" },
+    { "key": "threeOfAKind", "label": "Three of a Kind" },
+    { "key": "twoPair", "label": "Two Pair" },
+    { "key": "highPair", "label": "Jacks or Better" }
+  ],
+  "keyRows": ["fullHouse", "flush", "straight"],
+  "target": {
+    "id": "double-bonus-1075",
+    "label": "10/7/5",
+    "pays": { "royal": 800, "straightFlush": 50, "fourAces": 160, "four2s4s": 80, "four5sK": 50, "fullHouse": 10, "flush": 7, "straight": 5, "threeOfAKind": 3, "twoPair": 1, "highPair": 1 },
+    "rtp": 1.001725,
+    "variance": 28.2555,
+    "volatility": "High variance",
+    "volatilityNote": "Two pair pays only 1 and much of the return sits in four-of-a-kinds, so long losing stretches are normal.",
+    "sources": ["solver", "woo-double-bonus"]
+  },
+  "variants": [
+    { "id": "double-bonus-975", "label": "9/7/5", "diff": { "fullHouse": 9 }, "rtp": 0.991065, "variance": 28.5471, "sources": ["solver", "woo-double-bonus"] },
+    { "id": "double-bonus-965", "label": "9/6/5", "diff": { "fullHouse": 9, "flush": 6 }, "rtp": 0.978062, "variance": 30.7781, "sources": ["solver", "woo-double-bonus"] }
+  ],
+  "tileNote": "Excellent Return",
+  "preference": {
+    "preserve": { "level": "good", "reason": "Excellent theoretical return, higher bankroll volatility" },
+    "return": { "level": "preferred", "reason": "100.17% with optimal strategy" },
+    "state": { "level": "pass", "reason": "No persistent state to hunt in this game" },
+    "rewards": { "level": "situational", "reason": "Strong return, but swings are large for grinding coin-in" },
+    "practice": { "level": "good", "reason": "Strategy differs from Jacks in several common spots" }
+  },
+  "strategy": {
+    "title": "10/7/5 Double Bonus — core hold order",
+    "note": "Not Jacks strategy: flushes and straights are worth more, two pair less. Abbreviated card; every example is solver-checked and the trainer is exact.",
+    "sources": ["solver"],
+    "lines": [
+      { "text": "Four of a kind, straight flush, royal flush", "example": { "hand": "Ks Kh Kd Kc 3s", "hold": "Ks Kh Kd Kc" } },
+      { "text": "Four to a royal — even breaking a made flush", "example": { "hand": "As Ks Qs Js 4s", "hold": "As Ks Qs Js" } },
+      { "text": "Three aces — break aces-full to draw for four aces", "example": { "hand": "Ac Ad Ah 7s 7d", "hold": "Ac Ad Ah" } },
+      { "text": "Full house, flush, straight, three of a kind", "example": { "hand": "Kc Kd Kh 7s 7d", "hold": "Kc Kd Kh 7s 7d" } },
+      { "text": "Four to a straight flush", "example": { "hand": "5h 6h 7h 8h 8s", "hold": "5h 6h 7h 8h" } },
+      { "text": "Two pair — even with a pair of aces", "example": { "hand": "Ac Ad 4s 4h 9s", "hold": "Ac Ad 4s 4h" } },
+      { "text": "High pair — still over four to a flush", "example": { "hand": "Kc Kd 2c 5c 9c", "hold": "Kc Kd" } },
+      { "text": "Four to a flush — over three to a royal", "example": { "hand": "Kh Qh Th 7h 3d", "hold": "Kh Qh Th 7h" } },
+      { "text": "Three to a royal", "example": { "hand": "Kh Qh Th 7c 3d", "hold": "Kh Qh Th" } },
+      { "text": "Four to an outside straight — over a low pair", "example": { "hand": "8c 8d 9h Ts Jd", "hold": "8c 9h Ts Jd" } },
+      { "text": "Low pair", "example": { "hand": "8c 8d Kh 5s 3d", "hold": "8c 8d" } },
+      { "text": "Three to a straight flush", "example": { "hand": "5h 6h 7h Kc Jd", "hold": "5h 6h 7h" } },
+      { "text": "Two suited high cards", "example": { "hand": "Kh Jh 8c 5d 3s", "hold": "Kh Jh" } },
+      { "text": "Four to an inside straight with high cards", "example": { "hand": "9c Td Jh Ks 3d", "hold": "9c Td Jh Ks" } },
+      { "text": "Two unsuited high cards — with three, keep the lowest two", "example": { "hand": "Ac Kd Js 7h 3c", "hold": "Kd Js" } },
+      { "text": "Suited 10 with a jack", "example": { "hand": "Tc Jc 7d 4h 2s", "hold": "Tc Jc" } },
+      { "text": "One high card", "example": { "hand": "Kc 9d 7h 4s 2c", "hold": "Kc" } },
+      { "text": "Otherwise discard everything", "example": { "hand": "9c 7d 5h 3s 2d", "hold": "" } }
+    ]
+  }
+}

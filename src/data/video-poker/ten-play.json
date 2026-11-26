@@ -1,0 +1,21 @@
+{
+  "id": "ten-play",
+  "kind": "feature",
+  "name": "Ten Play",
+  "tileHeadline": "Inherits base paytable",
+  "tileNote": "10 hands per deal",
+  "summary": "Ten Play has no return of its own. It deals the same starting hand ten times and draws each separately; the return is that of the paytable underneath.",
+  "facts": [
+    { "label": "Return", "value": "Same as the single-hand game with the same paytable — look the paytable up on its base game tile", "sources": ["woo-multi-hand"] },
+    { "label": "Strategy", "value": "Identical to single-hand strategy for that paytable", "sources": ["woo-multi-hand"] },
+    { "label": "Swings", "value": "Ten hands share one deal, so each deal risks ten bets at once", "sources": ["woo-multi-hand"] }
+  ],
+  "wager": { "coinsPerHand": 5, "coinsNote": "5 coins per hand", "handOptions": [3, 5, 10, 50, 100], "defaultHands": 10 },
+  "preference": {
+    "preserve": { "level": "situational", "reason": "Ten bets at risk every deal — size the denomination down" },
+    "return": { "level": "situational", "reason": "No return of its own; depends entirely on the base paytable" },
+    "state": { "level": "pass", "reason": "No persistent state" },
+    "rewards": { "level": "preferred", "reason": "Ten times the coin-in per deal — check total wager below" },
+    "practice": { "level": "situational", "reason": "Same strategy as the base game — train that instead" }
+  }
+}

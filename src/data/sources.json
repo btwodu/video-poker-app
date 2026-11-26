@@ -1,0 +1,90 @@
+{
+  "solver": {
+    "title": "Casino Rule Book exact solver",
+    "citation": "Computed in this app: every one of the 2,598,960 deals, all 32 holds, exact draw enumeration. Re-run by the automated tests on every build.",
+    "url": null,
+    "strength": "computed",
+    "lastVerified": "2026-11-26",
+    "notes": "Assumes a fair 52-card deck and max-coin play (royal pays 800 per coin)."
+  },
+  "woo-job": {
+    "title": "Wizard of Odds — Jacks or Better tables and 9/6 optimal strategy",
+    "citation": "\"The 'Full Pay' paytable, per coin based on five coins bet, returns 99.54% of money bet assuming optimal strategy.\"",
+    "url": "https://wizardofodds.com/games/video-poker/tables/jacks-or-better/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Figure seen in a search extract of the page; the page itself could not be opened from the build environment. Matches the solver."
+  },
+  "woo-bonus": {
+    "title": "Wizard of Odds — 8/5 Bonus Poker strategy",
+    "citation": "\"With optimal strategy, the expected return of 8/5 Bonus Poker is 99.17%.\"",
+    "url": "https://wizardofodds.com/games/video-poker/strategy/bonus-poker/8-5/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Search extract only. Matches the solver."
+  },
+  "woo-double-bonus": {
+    "title": "Wizard of Odds — 10/7 Double Bonus strategy",
+    "citation": "\"With optimal strategy, the expected return of 10/7 Double Bonus is 100.17%\"",
+    "url": "https://wizardofodds.com/games/video-poker/strategy/double-bonus/10-7/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Search extract only. Matches the solver."
+  },
+  "woo-deuces": {
+    "title": "Wizard of Odds — Deuces Wild tables and full-pay optimal strategy",
+    "citation": "Full pay 800/200/25/15/9/5/3/2/2/1 returns 100.76%; Not So Ugly Ducks returns 99.73%.",
+    "url": "https://wizardofodds.com/games/video-poker/tables/deuces-wild/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Search extract only. Matches the solver."
+  },
+  "woo-triple-bonus": {
+    "title": "Wizard of Odds — Triple Bonus tables",
+    "citation": "Kings or better; four aces 240, four 2s-4s 120, four 5s-Ks 75, straight flush 50. Versions 11/7/4, 10/7/4, 9/7/4 and 10/7/5.",
+    "url": "https://wizardofodds.com/games/video-poker/tables/triple-bonus/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Rows seen in search extracts; totals confirmed by the solver (10/7/5 = 99.94%, 11/7/4 = 99.59%, matching vpFREE2)."
+  },
+  "woo-stp": {
+    "title": "Wizard of Odds — Super Times Pay",
+    "citation": "\"the multiplier appears once every 15 games and the average multiplier is 4.05\"; 9/6 Jacks or Better returns 99.82% with the feature.",
+    "url": "https://wizardofodds.com/games/video-poker/tables/super-times-pay/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Search extract only; not reproducible by this app's solver because the multiplier distribution is not in the data."
+  },
+  "woo-multi-hand": {
+    "title": "Wizard of Odds — Ask the Wizard, multi-hand video poker",
+    "citation": "\"the expected return is the same on a triple play machine as a single-hand machine, given the same pay table\"",
+    "url": "https://wizardofodds.com/ask-the-wizard/video-poker/multi-hand/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Search extract only (near-verbatim)."
+  },
+  "woo-ultimate-x": {
+    "title": "Wizard of Odds — Ultimate X",
+    "citation": "\"At a max bet of 10 coins per line, the player will activate the Ultimate X feature.\" \"Any paying hand will both pay immediately and earn a multiplier for the following hand in the same position.\"",
+    "url": "https://wizardofodds.com/games/video-poker/tables/ultimate-x/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Rules only. No published entry-threshold table was found for plain Ultimate X."
+  },
+  "woo-bonus-streak-rules": {
+    "title": "Wizard of Odds — Ultimate X Bonus Streak",
+    "citation": "\"invoke the Ultimate X Bonus Streak feature by betting ten credits per hand\"; 10-play streams are 2-3-4 and 2-3-4-8-12.",
+    "url": "https://wizardofodds.com/games/video-poker/tables/ultimate-x-bonus-streak/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Search extract only. One extract described the long 10-play stream differently (2-4-8-10-12); check the live page."
+  },
+  "woo-bonus-streak-vulturing": {
+    "title": "Wizard of Odds — Vulturing Ultimate X Bonus Streak",
+    "citation": "\"Total multipliers on the next hand are 21 or more. Total multipliers for the next two hands are 34 or more. Total multipliers for the next three hands are 43 or more.\"",
+    "url": "https://wizardofodds.com/games/video-poker/articles/vulturing-ultimate-x-bonus-streak/",
+    "strength": "published-extract",
+    "lastVerified": "2026-11-26",
+    "notes": "Thresholds seen in search extracts of the article and repeated on the Wizard of Vegas forum; the article page itself was not opened. A hand showing no multiplier counts as 1x. The exit wording is this app's definition, not a quote."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "bonus-poker",
+  "kind": "base",
+  "name": "Bonus Poker",
+  "rules": { "family": "jacks", "minHighPair": "J" },
+  "rows": [
+    { "key": "royal", "label": "Royal Flush" },
+    { "key": "straightFlush", "label": "Straight Flush" },
+    { "key": "fourAces", "label": "Four Aces" },
+    { "key": "four2s4s", "label": "Four 2s–4s" },
+    { "key": "four5sK", "label": "Four 5s–Kings" },
+    { "key": "fullHouse", "label": "Full House" },
+    { "key": "flush", "label": "Flush" },
+    { "key": "straight", "label": "Straight" },
+    { "key": "threeOfAKind", "label": "Three of a Kind" },
+    { "key": "twoPair", "label": "Two Pair" },
+    { "key": "highPair", "label": "Jacks or Better" }
+  ],
+  "keyRows": ["fullHouse", "flush"],
+  "target": {
+    "id": "bonus-85",
+    "label": "8/5",
+    "pays": { "royal": 800, "straightFlush": 50, "fourAces": 80, "four2s4s": 40, "four5sK": 25, "fullHouse": 8, "flush": 5, "straight": 4, "threeOfAKind": 3, "twoPair": 2, "highPair": 1 },
+    "rtp": 0.99166,
+    "variance": 20.9041,
+    "volatility": "Lower variance",
+    "volatilityNote": "Two pair still pays 2; the quad bonuses add only a little swing.",
+    "sources": ["solver", "woo-bonus"]
+  },
+  "variants": [
+    { "id": "bonus-75", "label": "7/5", "diff": { "fullHouse": 7 }, "rtp": 0.980147, "variance": 20.7538, "sources": ["solver"] },
+    { "id": "bonus-65", "label": "6/5", "diff": { "fullHouse": 6 }, "rtp": 0.968687, "variance": 20.6547, "sources": ["solver"] }
+  ],
+  "tileNote": "Steady, Jacks-style play",
+  "preference": {
+    "preserve": { "level": "good", "reason": "Lower variance, but 0.37 points under 9/6 Jacks" },
+    "return": { "level": "situational", "reason": "99.17% — pick it only when better tables are missing" },
+    "state": { "level": "pass", "reason": "No persistent state to hunt in this game" },
+    "rewards": { "level": "good", "reason": "Low cost per dollar of coin-in" },
+    "practice": { "level": "good", "reason": "Plays almost exactly like Jacks or Better" }
+  },
+  "strategy": {
+    "title": "8/5 Bonus — core hold order",
+    "note": "Same order as 9/6 Jacks for every line below (each example is solver-checked against this paytable). The trainer is exact.",
+    "sources": ["solver"],
+    "lines": [
+      { "text": "Four of a kind, straight flush, royal flush", "example": { "hand": "Ks Kh Kd Kc 3s", "hold": "Ks Kh Kd Kc" } },
+      { "text": "Four to a royal — even breaking a made flush", "example": { "hand": "As Ks Qs Js 4s", "hold": "As Ks Qs Js" } },
+      { "text": "Three of a kind, straight, flush, full house", "example": { "hand": "9c 9d 9h Ks 4d", "hold": "9c 9d 9h" } },
+      { "text": "Four to a straight flush", "example": { "hand": "5h 6h 7h 8h 8s", "hold": "5h 6h 7h 8h" } },
+      { "text": "Two pair", "example": { "hand": "Jc Jd 4s 4h As", "hold": "Jc Jd 4s 4h" } },
+      { "text": "High pair (jacks or better) — over four to a flush", "example": { "hand": "Kc Kd 2c 5c 9c", "hold": "Kc Kd" } },
+      { "text": "Three to a royal", "example": { "hand": "Kh Qh Th 7c 3d", "hold": "Kh Qh Th" } },
+      { "text": "Four to a flush — over a low pair", "example": { "hand": "8c 8d 2c 5c Kc", "hold": "8c 2c 5c Kc" } },
+      { "text": "Low pair — over four to a straight", "example": { "hand": "8c 8d 9h Ts Jd", "hold": "8c 8d" } },
+      { "text": "Four to an outside straight", "example": { "hand": "8c 9d Th Js 2d", "hold": "8c 9d Th Js" } },
+      { "text": "Two suited high cards", "example": { "hand": "Kh Jh 8c 5d 3s", "hold": "Kh Jh" } },
+      { "text": "Three to a straight flush", "example": { "hand": "5h 6h 7h Kc Jd", "hold": "5h 6h 7h" } },
+      { "text": "Two unsuited high cards — with three, keep the lowest two", "example": { "hand": "Ac Kd Js 7h 3c", "hold": "Kd Js" } },
+      { "text": "Suited 10 with J, Q or K", "example": { "hand": "Tc Jc 7d 4h 2s", "hold": "Tc Jc" } },
+      { "text": "One high card", "example": { "hand": "Kc 9d 7h 4s 2c", "hold": "Kc" } },
+      { "text": "Otherwise discard everything", "example": { "hand": "9c 7d 5h 3s 2d", "hold": "" } }
+    ]
+  }
+}

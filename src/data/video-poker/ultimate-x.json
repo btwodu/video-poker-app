@@ -1,0 +1,29 @@
+{
+  "id": "ultimate-x",
+  "kind": "feature",
+  "name": "Ultimate X",
+  "tileHeadline": "State opportunity",
+  "tileNote": "No sourced entry rule yet",
+  "summary": "Multi-hand video poker where a winning hand leaves a multiplier on the same line for the next deal. Multipliers left by a previous player are visible on screen.",
+  "facts": [
+    { "label": "Feature bet", "value": "10 coins per hand turns the feature on", "sources": ["woo-ultimate-x"] },
+    { "label": "Persistent state", "value": "A paying hand earns a multiplier for the next hand in the same position", "sources": ["woo-ultimate-x"] },
+    { "label": "Entry threshold", "value": "No published threshold table found. Forum rules of thumb exist but are not used here.", "sources": [] }
+  ],
+  "wager": { "coinsPerHand": 10, "coinsNote": "10 coins per hand with the feature on", "handOptions": [3, 5, 10], "defaultHands": 10 },
+  "preference": {
+    "preserve": { "level": "pass", "reason": "Double bet per hand and large swings" },
+    "return": { "level": "unknown", "reason": "Return depends on the base paytable; not in the rulebook" },
+    "state": { "level": "unknown", "reason": "Visible state, but no sourced entry rule yet" },
+    "rewards": { "level": "situational", "reason": "Double coin-in per hand — check total wager" },
+    "practice": { "level": "pass", "reason": "No trainer for the multiplier strategy" }
+  },
+  "state": {
+    "fixedPrompt": "Which machine is this?",
+    "inputs": [
+      { "key": "next1", "label": "Next hand — total of all multipliers showing", "help": "Add the multiplier on every line. A line with no multiplier counts as 1." }
+    ],
+    "configs": [],
+    "noRuleText": "No sourced entry rule exists for any Ultimate X configuration yet, so the app cannot say whether this state justifies playing."
+  }
+}
