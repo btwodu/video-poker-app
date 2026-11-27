@@ -219,10 +219,17 @@
         }
       },
       {
-        "text": "Three to a straight flush",
+        "text": "Three to a straight flush — touching cards, or containing two high cards",
         "example": {
           "hand": "5h 6h 7h Kc Jd",
           "hold": "5h 6h 7h"
+        }
+      },
+      {
+        "text": "Four to an inside straight with three or four high cards",
+        "example": {
+          "hand": "Kd Qc Jc 9s 3d",
+          "hold": "Kd Qc Jc 9s"
         }
       },
       {
@@ -233,7 +240,14 @@
         }
       },
       {
-        "text": "Four to an inside straight with high cards",
+        "text": "Three to a straight flush with one gap",
+        "example": {
+          "hand": "4c 6c 7c Kd Jh",
+          "hold": "4c 6c 7c"
+        }
+      },
+      {
+        "text": "Four to an inside straight with two high cards",
         "example": {
           "hand": "9c Td Jh Ks 3d",
           "hold": "9c Td Jh Ks"

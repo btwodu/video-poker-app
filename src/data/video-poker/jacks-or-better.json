@@ -242,6 +242,20 @@
         }
       },
       {
+        "text": "Unsuited A-K-Q-J — hold all four",
+        "example": {
+          "hand": "Ad Kc Qc Js 4d",
+          "hold": "Ad Kc Qc Js"
+        }
+      },
+      {
+        "text": "Three to a straight flush — touching cards, or containing two high cards",
+        "example": {
+          "hand": "Kh Jh 5c 6c 7c",
+          "hold": "5c 6c 7c"
+        }
+      },
+      {
         "text": "Two suited high cards",
         "example": {
           "hand": "Kh Jh 8c 5d 3s",
@@ -249,10 +263,17 @@
         }
       },
       {
-        "text": "Three to a straight flush",
+        "text": "Three to a straight flush with one gap",
         "example": {
-          "hand": "5h 6h 7h Kc Jd",
-          "hold": "5h 6h 7h"
+          "hand": "4c 6c 7c Kd Jh",
+          "hold": "4c 6c 7c"
+        }
+      },
+      {
+        "text": "Four to an inside straight with three high cards",
+        "example": {
+          "hand": "Kd Qc Jh 9s 3d",
+          "hold": "Kd Qc Jh 9s"
         }
       },
       {
