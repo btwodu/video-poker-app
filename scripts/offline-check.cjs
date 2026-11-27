@@ -60,7 +60,7 @@ const shots = process.argv[2];
     step('exact return for a custom table runs in a worker');
 
     await page.getByRole('button', { name: '9/6', exact: true }).click();
-    assert.equal(await page.locator('.strategy li').count(), 16);
+    assert.equal(await page.locator('.strategy li').count(), 20);
     await shot('jacks-detail');
     await page.getByRole('link', { name: /Train 9\/6/ }).click();
     await page.waitForSelector('.playing-card:not(.blank)');
