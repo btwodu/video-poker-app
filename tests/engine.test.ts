@@ -4,6 +4,7 @@ import { D, J, evalDeuces, evalJacks } from '../src/engine/evaluate';
 import { isOptimalHold, solveHand } from '../src/engine/solver';
 import { describeHold } from '../src/engine/describe';
 import { BASE_GAMES } from '../src/data';
+import { compileCard } from '../src/strategy/card';
 
 const ev = (fn: typeof evalJacks, text: string) => { const h = parseHand(text); return fn(h[0], h[1], h[2], h[3], h[4]); };
 
@@ -36,16 +37,18 @@ describe('hand evaluators', () => {
   });
 });
 
-describe('strategy cards agree with the exact solver', () => {
+describe('strategy card examples', () => {
   for (const game of BASE_GAMES) {
-    for (const line of game.strategy.lines) {
+    const card = compileCard(game.rules, game.strategy.lines);
+    game.strategy.lines.forEach((line, index) => {
       it(`${game.name}: ${line.text} (${line.example.hand})`, () => {
-        const hand = parseHand(line.example.hand);
-        const held = line.example.hold ? parseHand(line.example.hold) : [];
-        const result = solveHand(game.rules, game.target.pays, hand);
-        expect(isOptimalHold(result, holdMask(hand, held))).toBe(true);
+        const hand = parseHand(line.example.hand).sort((x, y) => x - y);
+        const held = holdMask(hand, line.example.hold ? parseHand(line.example.hold) : []);
+        // The example must be decided by this very line, and the solver must agree with it.
+        expect(card.play(hand)).toEqual({ mask: held, line: index });
+        expect(isOptimalHold(solveHand(game.rules, game.target.pays, hand), held)).toBe(true);
       });
-    }
+    });
   }
 });
 

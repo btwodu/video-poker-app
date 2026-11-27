@@ -29,7 +29,11 @@ export interface PaytableConfig {
 export interface StrategyLine {
   group?: string;
   text: string;
-  /** A hand where this line is the correct play; verified against the solver in tests. */
+  /** Machine-readable form of the line (see src/strategy/card.ts); the tests play every deal with it. */
+  rule: string;
+  /** In wild games, the number of deuces dealt that this line applies to. */
+  deuces?: number;
+  /** A hand where this line is the first that fits and is the correct play; verified in tests. */
   example: { hand: string; hold: string };
 }
 
@@ -44,7 +48,14 @@ export interface BaseGame {
   variants: { id: string; label: string; diff: Pays; rtp: number; variance: number; sources: string[] }[];
   tileNote: string;
   preference: GoalPreferences;
-  strategy: { title: string; note: string; sources: string[]; lines: StrategyLine[] };
+  strategy: {
+    title: string;
+    note: string;
+    /** Exact return of playing the card line by line, over every possible deal. */
+    cardRtp: number;
+    sources: string[];
+    lines: StrategyLine[];
+  };
 }
 
 export interface StateRule { input: string; gte: number; deals: number }

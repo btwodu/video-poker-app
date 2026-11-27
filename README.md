@@ -70,8 +70,10 @@ scripts/                offline check and icon generation
   the tests recompute every one of them on each run. They agree with the published figures.
 - **Trainer answers** come from `src/engine/solver.ts`, which enumerates every draw for all 32 holds of
   the dealt hand against the exact paytable. There is no hand-written strategy table to get wrong.
-- **Strategy cards** are abbreviated lists for people. Every line carries an example hand, and the tests
-  check that the solver agrees with each example.
+- **Strategy cards** are executable. Every line has a machine-readable `rule`; the tests play all
+  2,598,960 deals by the card ("first line that fits") and require the result to be within 0.02% of
+  perfect play. The measured return is stored as `strategy.cardRtp` and shown in the app. Each line also
+  carries an example hand that must be decided by that line and agree with the solver.
 - **Bonus Streak thresholds, Super Times Pay figures and game rules** are published figures. They were
   read from search-engine extracts of the cited pages, not from the pages themselves; `sources.json`
   marks them `published-extract`. Re-check them against the live pages when you can.
@@ -95,9 +97,19 @@ run `npm test`, and copy the exact values from the failing `rtp.test.ts` output.
 
 ## Adding a trainer strategy
 
-Nothing to add: the trainer works for any paytable the evaluator understands, including a custom table
-typed in on the floor. To add or change a strategy card, edit `strategy.lines` in the game's JSON. Each
-line needs an `example` (`hand`, `hold`); `npm test` fails if the solver disagrees with it.
+Nothing to add for the trainer: it works for any paytable the evaluator understands, including a custom
+table typed in on the floor.
+
+To add or change a strategy card, edit `strategy.lines` in the game's JSON. Each line needs `text` (for
+people) and `rule` (for the tests; the syntax is documented at the top of `src/strategy/card.ts`). Then:
+
+```bash
+npx tsx scripts/card-audit.ts <game-id>           # cost vs perfect play, and the costliest disagreements
+npx tsx scripts/card-audit.ts <game-id> --write   # store cardRtp and fill in missing examples
+```
+
+The audit lists, by cost, every kind of hand where the card and the solver disagree, with an example.
+Reorder or split lines until the cost is under 0.02%; `npm test` enforces that limit.
 
 ## Adding a persistent-state game
 

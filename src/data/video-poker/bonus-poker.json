@@ -132,20 +132,22 @@
   },
   "strategy": {
     "title": "8/5 Bonus — core hold order",
-    "note": "Close to 9/6 Jacks, but the high-card lines differ. Abbreviated card: every example is solver-checked against this paytable, and the trainer is exact.",
+    "note": "Play the first line that fits your hand. Close to 9/6 Jacks, but the high-card lines differ.",
     "sources": [
       "solver"
     ],
     "lines": [
       {
         "text": "Four of a kind, straight flush, royal flush",
+        "rule": "made:royal,sf,quads",
         "example": {
-          "hand": "Ks Kh Kd Kc 3s",
-          "hold": "Ks Kh Kd Kc"
+          "hand": "Tc Jc Qc Kc Ac",
+          "hold": "Tc Jc Qc Kc Ac"
         }
       },
       {
         "text": "Four to a royal — even breaking a made flush",
+        "rule": "royal:4",
         "example": {
           "hand": "As Ks Qs Js 4s",
           "hold": "As Ks Qs Js"
@@ -153,6 +155,7 @@
       },
       {
         "text": "Three of a kind, straight, flush, full house",
+        "rule": "made:fullhouse,flush,straight|kind:3",
         "example": {
           "hand": "9c 9d 9h Ks 4d",
           "hold": "9c 9d 9h"
@@ -160,6 +163,7 @@
       },
       {
         "text": "Four to a straight flush",
+        "rule": "sf:4",
         "example": {
           "hand": "5h 6h 7h 8h 8s",
           "hold": "5h 6h 7h 8h"
@@ -167,6 +171,7 @@
       },
       {
         "text": "Two pair",
+        "rule": "twopair",
         "example": {
           "hand": "Jc Jd 4s 4h As",
           "hold": "Jc Jd 4s 4h"
@@ -174,6 +179,7 @@
       },
       {
         "text": "High pair (jacks or better) — over four to a flush",
+        "rule": "pair:high",
         "example": {
           "hand": "Kc Kd 2c 5c 9c",
           "hold": "Kc Kd"
@@ -181,6 +187,7 @@
       },
       {
         "text": "Three to a royal",
+        "rule": "royal:3",
         "example": {
           "hand": "Kh Qh Th 7c 3d",
           "hold": "Kh Qh Th"
@@ -188,13 +195,23 @@
       },
       {
         "text": "Four to a flush — over a low pair",
+        "rule": "flush:4",
         "example": {
           "hand": "8c 8d 2c 5c Kc",
           "hold": "8c 2c 5c Kc"
         }
       },
       {
+        "text": "K-Q-J-10 of any suits — over a pair of tens",
+        "rule": "straight:4:out:h>=3",
+        "example": {
+          "hand": "2c Tc Jc Qd Kh",
+          "hold": "Tc Jc Qd Kh"
+        }
+      },
+      {
         "text": "Low pair — over four to a straight",
+        "rule": "pair:low",
         "example": {
           "hand": "8c 8d 9h Ts Jd",
           "hold": "8c 8d"
@@ -202,6 +219,7 @@
       },
       {
         "text": "Four to an outside straight",
+        "rule": "straight:4:out",
         "example": {
           "hand": "8c 9d Th Js 2d",
           "hold": "8c 9d Th Js"
@@ -209,34 +227,39 @@
       },
       {
         "text": "Unsuited A-K-Q-J — hold all four",
+        "rule": "ranks:a:AKQJ",
         "example": {
           "hand": "Ad Kc Qc Js 4d",
           "hold": "Ad Kc Qc Js"
         }
       },
       {
-        "text": "Three to a straight flush containing two high cards, such as Q-J-9",
+        "text": "Three to a straight flush — touching cards (3-4-5 or higher), or containing two high cards",
+        "rule": "sf:3:t>=0:lo>=3",
         "example": {
-          "hand": "Kd Qc Jc 9c 4h",
-          "hold": "Qc Jc 9c"
+          "hand": "4c 5c 6c 9d Th",
+          "hold": "4c 5c 6c"
         }
       },
       {
         "text": "Two suited high cards",
+        "rule": "ranks:s:QJ,KQ,KJ,AK,AQ,AJ",
         "example": {
           "hand": "Kh Jh 8c 5d 3s",
           "hold": "Kh Jh"
         }
       },
       {
-        "text": "Three touching cards to a straight flush",
+        "text": "Three to a straight flush with one gap",
+        "rule": "sf:3:t>=-1",
         "example": {
-          "hand": "5h 6h 7h Kc Jd",
-          "hold": "5h 6h 7h"
+          "hand": "4c 5c 7c 9d Th",
+          "hold": "4c 5c 7c"
         }
       },
       {
         "text": "Four to an inside straight with three high cards",
+        "rule": "straight:4:in:h>=3",
         "example": {
           "hand": "Kd Qc Jh 9s 3d",
           "hold": "Kd Qc Jh 9s"
@@ -244,60 +267,69 @@
       },
       {
         "text": "Unsuited K-Q-J — hold all three",
+        "rule": "ranks:a:KQJ",
         "example": {
           "hand": "Kd Qc Jh 7h 3s",
           "hold": "Kd Qc Jh"
         }
       },
       {
-        "text": "Ace with two other unsuited high cards — drop the ace",
+        "text": "Unsuited Q-J or K-Q",
+        "rule": "ranks:a:QJ,KQ",
         "example": {
-          "hand": "Ac Kd Js 7h 3c",
-          "hold": "Kd Js"
+          "hand": "2c 3d 7c Jc Qd",
+          "hold": "Jc Qd"
         }
       },
       {
-        "text": "Unsuited Q-J, K-Q, A-K or A-Q",
+        "text": "Suited J-10",
+        "rule": "ranks:s:JT",
         "example": {
-          "hand": "Ad Qc Tc 7h 3s",
-          "hold": "Ad Qc"
+          "hand": "2c 3c 4d Th Jh",
+          "hold": "Th Jh"
         }
       },
       {
-        "text": "Suited J-10 — over A-J; a near tie with K-J",
+        "text": "Unsuited K-J, A-K, A-Q or A-J",
+        "rule": "ranks:a:KJ,AK,AQ,AJ",
         "example": {
-          "hand": "Ad Jc Tc 7h 3s",
-          "hold": "Jc Tc"
-        }
-      },
-      {
-        "text": "Unsuited K-J or A-J",
-        "example": {
-          "hand": "Kd Jc Th 7h 3s",
-          "hold": "Kd Jc"
+          "hand": "2c 7d 8c Jc Kd",
+          "hold": "Jc Kd"
         }
       },
       {
         "text": "Suited Q-10 or K-10",
+        "rule": "ranks:s:QT,KT",
         "example": {
-          "hand": "Qc Tc 7d 4h 2s",
-          "hold": "Qc Tc"
+          "hand": "2c 3c 4d Th Qh",
+          "hold": "Th Qh"
         }
       },
       {
         "text": "One high card",
+        "rule": "ranks:a:J,Q,K,A",
         "example": {
           "hand": "Kc 9d 7h 4s 2c",
           "hold": "Kc"
         }
       },
       {
+        "text": "Any other three to a straight flush",
+        "rule": "sf:3",
+        "example": {
+          "hand": "4c 5c 8c 9d Th",
+          "hold": "4c 5c 8c"
+        }
+      },
+      {
         "text": "Otherwise discard everything",
+        "rule": "discard",
         "example": {
           "hand": "9c 7d 5h 3s 2d",
           "hold": ""
         }
       }
-    ]
+    ],
+    "cardRtp": 0.991627
   }
 }

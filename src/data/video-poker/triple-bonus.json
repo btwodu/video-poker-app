@@ -2,66 +2,384 @@
   "id": "triple-bonus",
   "kind": "base",
   "name": "Triple Bonus",
-  "rules": { "family": "jacks", "minHighPair": "K" },
+  "rules": {
+    "family": "jacks",
+    "minHighPair": "K"
+  },
   "rows": [
-    { "key": "royal", "label": "Royal Flush" },
-    { "key": "straightFlush", "label": "Straight Flush" },
-    { "key": "fourAces", "label": "Four Aces" },
-    { "key": "four2s4s", "label": "Four 2s–4s" },
-    { "key": "four5sK", "label": "Four 5s–Kings" },
-    { "key": "fullHouse", "label": "Full House" },
-    { "key": "flush", "label": "Flush" },
-    { "key": "straight", "label": "Straight" },
-    { "key": "threeOfAKind", "label": "Three of a Kind" },
-    { "key": "twoPair", "label": "Two Pair" },
-    { "key": "highPair", "label": "Kings or Better" }
+    {
+      "key": "royal",
+      "label": "Royal Flush"
+    },
+    {
+      "key": "straightFlush",
+      "label": "Straight Flush"
+    },
+    {
+      "key": "fourAces",
+      "label": "Four Aces"
+    },
+    {
+      "key": "four2s4s",
+      "label": "Four 2s–4s"
+    },
+    {
+      "key": "four5sK",
+      "label": "Four 5s–Kings"
+    },
+    {
+      "key": "fullHouse",
+      "label": "Full House"
+    },
+    {
+      "key": "flush",
+      "label": "Flush"
+    },
+    {
+      "key": "straight",
+      "label": "Straight"
+    },
+    {
+      "key": "threeOfAKind",
+      "label": "Three of a Kind"
+    },
+    {
+      "key": "twoPair",
+      "label": "Two Pair"
+    },
+    {
+      "key": "highPair",
+      "label": "Kings or Better"
+    }
   ],
-  "keyRows": ["fullHouse", "flush", "straight"],
+  "keyRows": [
+    "fullHouse",
+    "flush",
+    "straight"
+  ],
   "target": {
     "id": "triple-bonus-1075",
     "label": "10/7/5",
-    "pays": { "royal": 800, "straightFlush": 50, "fourAces": 240, "four2s4s": 120, "four5sK": 75, "fullHouse": 10, "flush": 7, "straight": 5, "threeOfAKind": 3, "twoPair": 1, "highPair": 1 },
+    "pays": {
+      "royal": 800,
+      "straightFlush": 50,
+      "fourAces": 240,
+      "four2s4s": 120,
+      "four5sK": 75,
+      "fullHouse": 10,
+      "flush": 7,
+      "straight": 5,
+      "threeOfAKind": 3,
+      "twoPair": 1,
+      "highPair": 1
+    },
     "rtp": 0.999364,
     "variance": 44.7233,
     "volatility": "Very high variance",
     "volatilityNote": "Pays only on kings or better and two pair pays 1; variance is more than double 9/6 Jacks.",
-    "sources": ["solver", "woo-triple-bonus"]
+    "sources": [
+      "solver",
+      "woo-triple-bonus"
+    ]
   },
   "variants": [
-    { "id": "triple-bonus-1174", "label": "11/7/4", "diff": { "fullHouse": 11, "straight": 4 }, "rtp": 0.995881, "variance": 45.2561, "sources": ["solver", "woo-triple-bonus"] },
-    { "id": "triple-bonus-1074", "label": "10/7/4", "diff": { "straight": 4 }, "rtp": 0.985192, "variance": 45.0364, "sources": ["solver", "woo-triple-bonus"] },
-    { "id": "triple-bonus-974", "label": "9/7/4", "diff": { "fullHouse": 9, "straight": 4 }, "rtp": 0.974504, "variance": 44.8528, "sources": ["solver", "woo-triple-bonus"] }
+    {
+      "id": "triple-bonus-1174",
+      "label": "11/7/4",
+      "diff": {
+        "fullHouse": 11,
+        "straight": 4
+      },
+      "rtp": 0.995881,
+      "variance": 45.2561,
+      "sources": [
+        "solver",
+        "woo-triple-bonus"
+      ]
+    },
+    {
+      "id": "triple-bonus-1074",
+      "label": "10/7/4",
+      "diff": {
+        "straight": 4
+      },
+      "rtp": 0.985192,
+      "variance": 45.0364,
+      "sources": [
+        "solver",
+        "woo-triple-bonus"
+      ]
+    },
+    {
+      "id": "triple-bonus-974",
+      "label": "9/7/4",
+      "diff": {
+        "fullHouse": 9,
+        "straight": 4
+      },
+      "rtp": 0.974504,
+      "variance": 44.8528,
+      "sources": [
+        "solver",
+        "woo-triple-bonus"
+      ]
+    }
   ],
   "tileNote": "Kings or better · not Triple Double Bonus",
   "preference": {
-    "preserve": { "level": "situational", "reason": "Near break-even return, but very high variance" },
-    "return": { "level": "good", "reason": "99.94% with optimal strategy" },
-    "state": { "level": "pass", "reason": "No persistent state to hunt in this game" },
-    "rewards": { "level": "situational", "reason": "Very large swings for grinding coin-in" },
-    "practice": { "level": "situational", "reason": "Unusual strategy — jacks and queens are not high cards" }
+    "preserve": {
+      "level": "situational",
+      "reason": "Near break-even return, but very high variance"
+    },
+    "return": {
+      "level": "good",
+      "reason": "99.94% with optimal strategy"
+    },
+    "state": {
+      "level": "pass",
+      "reason": "No persistent state to hunt in this game"
+    },
+    "rewards": {
+      "level": "situational",
+      "reason": "Very large swings for grinding coin-in"
+    },
+    "practice": {
+      "level": "situational",
+      "reason": "Unusual strategy — jacks and queens are not high cards"
+    }
   },
   "strategy": {
     "title": "10/7/5 Triple Bonus — core hold order",
-    "note": "Only kings and aces are high cards. Abbreviated card; every example is solver-checked and the trainer is exact.",
-    "sources": ["solver"],
+    "note": "Play the first line that fits your hand. Only kings and aces are high cards.",
+    "sources": [
+      "solver"
+    ],
     "lines": [
-      { "text": "Four of a kind, straight flush, royal flush", "example": { "hand": "Ks Kh Kd Kc 3s", "hold": "Ks Kh Kd Kc" } },
-      { "text": "Four to a royal — even breaking a made flush", "example": { "hand": "As Ks Qs Js 4s", "hold": "As Ks Qs Js" } },
-      { "text": "Three aces — break aces-full to draw for four aces", "example": { "hand": "Ac Ad Ah 7s 7d", "hold": "Ac Ad Ah" } },
-      { "text": "Full house, flush, straight, three of a kind", "example": { "hand": "Kc Kd Kh 7s 7d", "hold": "Kc Kd Kh 7s 7d" } },
-      { "text": "Four to a straight flush", "example": { "hand": "5h 6h 7h 8h 8s", "hold": "5h 6h 7h 8h" } },
-      { "text": "Pair of aces — break two pair", "example": { "hand": "Ac Ad 4s 4h 9s", "hold": "Ac Ad" } },
-      { "text": "Two pair", "example": { "hand": "Jc Jd 4s 4h As", "hold": "Jc Jd 4s 4h" } },
-      { "text": "Pair of kings — over four to a flush", "example": { "hand": "Kc Kd 2c 5c 9c", "hold": "Kc Kd" } },
-      { "text": "Four to a flush — over three to a royal", "example": { "hand": "Kh Qh Th 7h 3d", "hold": "Kh Qh Th 7h" } },
-      { "text": "Three to a royal", "example": { "hand": "Kh Qh Th 7c 3d", "hold": "Kh Qh Th" } },
-      { "text": "Four to an outside straight — over a low pair, queens included", "example": { "hand": "Qc Qd 9h Ts Jd", "hold": "Qc 9h Ts Jd" } },
-      { "text": "Low pair (2s through queens)", "example": { "hand": "Qc Qd 9h 5s 3d", "hold": "Qc Qd" } },
-      { "text": "Three to a straight flush", "example": { "hand": "5h 6h 7h Kc Jd", "hold": "5h 6h 7h" } },
-      { "text": "Four to an inside straight", "example": { "hand": "5c 6d 7h 9s Kd", "hold": "5c 6d 7h 9s" } },
-      { "text": "Ace and king", "example": { "hand": "Ac Kd Js 7h 3c", "hold": "Ac Kd" } },
-      { "text": "One ace or king", "example": { "hand": "Kc 9d 7h 4s 2c", "hold": "Kc" } },
-      { "text": "Otherwise discard everything", "example": { "hand": "9c 7d 5h 3s 2d", "hold": "" } }
-    ]
+      {
+        "text": "Four of a kind, straight flush, royal flush",
+        "rule": "made:royal,sf,quads",
+        "example": {
+          "hand": "Tc Jc Qc Kc Ac",
+          "hold": "Tc Jc Qc Kc Ac"
+        }
+      },
+      {
+        "text": "Four to a royal — even breaking a made flush",
+        "rule": "royal:4",
+        "example": {
+          "hand": "As Ks Qs Js 4s",
+          "hold": "As Ks Qs Js"
+        }
+      },
+      {
+        "text": "Three aces — break aces-full to draw for four aces",
+        "rule": "kind:3:A",
+        "example": {
+          "hand": "Ac Ad Ah 7s 7d",
+          "hold": "Ac Ad Ah"
+        }
+      },
+      {
+        "text": "Full house, flush, straight, three of a kind",
+        "rule": "made:fullhouse,flush,straight|kind:3",
+        "example": {
+          "hand": "Kc Kd Kh 7s 7d",
+          "hold": "Kc Kd Kh 7s 7d"
+        }
+      },
+      {
+        "text": "Four to a straight flush",
+        "rule": "sf:4",
+        "example": {
+          "hand": "5h 6h 7h 8h 8s",
+          "hold": "5h 6h 7h 8h"
+        }
+      },
+      {
+        "text": "Pair of aces — break two pair",
+        "rule": "pair:A",
+        "example": {
+          "hand": "Ac Ad 4s 4h 9s",
+          "hold": "Ac Ad"
+        }
+      },
+      {
+        "text": "Two pair",
+        "rule": "twopair",
+        "example": {
+          "hand": "Jc Jd 4s 4h As",
+          "hold": "Jc Jd 4s 4h"
+        }
+      },
+      {
+        "text": "Pair of kings — over four to a flush",
+        "rule": "pair:K",
+        "example": {
+          "hand": "Kc Kd 2c 5c 9c",
+          "hold": "Kc Kd"
+        }
+      },
+      {
+        "text": "Four to a flush — over three to a royal",
+        "rule": "flush:4",
+        "example": {
+          "hand": "Kh Qh Th 7h 3d",
+          "hold": "Kh Qh Th 7h"
+        }
+      },
+      {
+        "text": "Three to a royal",
+        "rule": "royal:3",
+        "example": {
+          "hand": "Kh Qh Th 7c 3d",
+          "hold": "Kh Qh Th"
+        }
+      },
+      {
+        "text": "Pair of 2s, 3s or 4s — over four to a straight",
+        "rule": "pair:234",
+        "example": {
+          "hand": "2c 2d 3c 4c 6d",
+          "hold": "2c 2d"
+        }
+      },
+      {
+        "text": "Four to an outside straight — over any other low pair, queens included",
+        "rule": "straight:4:out",
+        "example": {
+          "hand": "4c 5d 6h 7s Tc",
+          "hold": "4c 5d 6h 7s"
+        }
+      },
+      {
+        "text": "Low pair (5s through queens)",
+        "rule": "pair:low",
+        "example": {
+          "hand": "2c 3c 4c 6d 6h",
+          "hold": "6d 6h"
+        }
+      },
+      {
+        "text": "Three to a straight flush with at most one gap",
+        "rule": "sf:3:t>=-1",
+        "example": {
+          "hand": "3c 6d 7d 8d Jh",
+          "hold": "6d 7d 8d"
+        }
+      },
+      {
+        "text": "Four to an inside straight with an ace or king",
+        "rule": "straight:4:in:h>=1",
+        "example": {
+          "hand": "2c Tc Jd Kh Ad",
+          "hold": "Tc Jd Kh Ad"
+        }
+      },
+      {
+        "text": "Three to a flush with an ace or king",
+        "rule": "flush:3:h>=1",
+        "example": {
+          "hand": "2c 3c Td Jd Kc",
+          "hold": "2c 3c Kc"
+        }
+      },
+      {
+        "text": "Suited A-K",
+        "rule": "ranks:s:AK",
+        "example": {
+          "hand": "2c 3c 6d Kh Ah",
+          "hold": "Kh Ah"
+        }
+      },
+      {
+        "text": "Any other three to a straight flush",
+        "rule": "sf:3",
+        "example": {
+          "hand": "3c 4d 6h 8h Th",
+          "hold": "6h 8h Th"
+        }
+      },
+      {
+        "text": "Ace and king",
+        "rule": "ranks:a:AK",
+        "example": {
+          "hand": "Ac Kd Js 7h 3c",
+          "hold": "Ac Kd"
+        }
+      },
+      {
+        "text": "One ace",
+        "rule": "ranks:a:A",
+        "example": {
+          "hand": "6c 7c Td Jh As",
+          "hold": "As"
+        }
+      },
+      {
+        "text": "Any other four to an inside straight",
+        "rule": "straight:4:in",
+        "example": {
+          "hand": "3c 4d 6h 7s Tc",
+          "hold": "3c 4d 6h 7s"
+        }
+      },
+      {
+        "text": "King with a suited Q, J or 10",
+        "rule": "ranks:s:KQ,KJ,KT",
+        "example": {
+          "hand": "2c 3c 4d Th Kh",
+          "hold": "Th Kh"
+        }
+      },
+      {
+        "text": "One king",
+        "rule": "ranks:a:K",
+        "example": {
+          "hand": "2c 5c 6d 8d Kh",
+          "hold": "Kh"
+        }
+      },
+      {
+        "text": "Three to a flush",
+        "rule": "flush:3",
+        "example": {
+          "hand": "3c 4c 6d 9h Tc",
+          "hold": "3c 4c Tc"
+        }
+      },
+      {
+        "text": "Two suited cards, ten or higher",
+        "rule": "royal:2",
+        "example": {
+          "hand": "3c 4d 6h Ts Js",
+          "hold": "Ts Js"
+        }
+      },
+      {
+        "text": "Three touching cards of any suits, 5-6-7 or higher",
+        "rule": "straight:3:g<=0:lo>=5",
+        "example": {
+          "hand": "3c 4d 8h 9d Ts",
+          "hold": "8h 9d Ts"
+        }
+      },
+      {
+        "text": "Two suited cards, touching or one apart",
+        "rule": "sf:2:g<=1:lo>=3:top",
+        "example": {
+          "hand": "4c 5c 9d Th Qs",
+          "hold": "4c 5c"
+        }
+      },
+      {
+        "text": "Otherwise discard everything",
+        "rule": "discard",
+        "example": {
+          "hand": "9c 7d 5h 3s 2d",
+          "hold": ""
+        }
+      }
+    ],
+    "cardRtp": 0.999218
   }
 }

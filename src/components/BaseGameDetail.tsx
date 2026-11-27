@@ -122,6 +122,11 @@ export function BaseGameDetail({ game, goal }: { game: BaseGame; goal: GoalId })
           <>
             <p className="lead">{game.strategy.title}</p>
             <p className="muted small">{game.strategy.note}</p>
+            <p className="muted small">
+              Followed exactly, this card returns {(game.strategy.cardRtp * 100).toFixed(2)}% — within{' '}
+              {((target.rtp - game.strategy.cardRtp) * 100).toFixed(3)} of a point of perfect play, measured over
+              every possible deal. The trainer grades against perfect play.
+            </p>
             <ol className="strategy">
               {game.strategy.lines.map((line, i) => (
                 <li key={i} className={line.group && line.group !== game.strategy.lines[i - 1]?.group ? 'grouped' : ''}>
