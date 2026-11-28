@@ -23,6 +23,8 @@ export interface PaytableConfig {
   pays: Pays;
   rtp: number;
   variance: number;
+  /** Exact return of playing the game's strategy card line by line on this paytable. */
+  cardRtp: number;
   sources: string[];
 }
 
@@ -44,8 +46,8 @@ export interface BaseGame {
   rules: GameRules;
   rows: { key: string; label: string }[];
   keyRows: string[];
-  target: PaytableConfig & { volatility: string; volatilityNote: string };
-  variants: { id: string; label: string; diff: Pays; rtp: number; variance: number; sources: string[] }[];
+  target: Omit<PaytableConfig, 'cardRtp'> & { volatility: string; volatilityNote: string };
+  variants: { id: string; label: string; diff: Pays; rtp: number; variance: number; cardRtp: number; sources: string[] }[];
   tileNote: string;
   preference: GoalPreferences;
   strategy: {

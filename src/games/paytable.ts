@@ -1,13 +1,14 @@
 /** Paytable matching: resolve what the cabinet shows to a known configuration, or say it is unknown. */
+import { CARD_MAX_COST } from '../data';
 import type { BaseGame, Pays, PaytableConfig } from '../data/types';
 
 /** Every known configuration of a game, target first, with full pay rows. */
 export function knownConfigs(game: BaseGame): PaytableConfig[] {
   return [
-    game.target,
+    { ...game.target, cardRtp: game.strategy.cardRtp },
     ...game.variants.map((v) => ({
       id: v.id, label: v.label, pays: { ...game.target.pays, ...v.diff },
-      rtp: v.rtp, variance: v.variance, sources: v.sources,
+      rtp: v.rtp, variance: v.variance, cardRtp: v.cardRtp, sources: v.sources,
     })),
   ];
 }
@@ -36,3 +37,17 @@ export function matchPaytable(game: BaseGame, actual: Pays): MatchResult {
 }
 
 export const formatRtp = (rtp: number): string => `${(rtp * 100).toFixed(2)}%`;
+
+/** What following the game's strategy card costs on this paytable, and whether that is small enough to show it. */
+export function cardFit(config: PaytableConfig): { cost: number; usable: boolean } {
+  const cost = config.rtp - config.cardRtp;
+  return { cost, usable: cost <= CARD_MAX_COST };
+}
+
+/** Long-run theoretical result per $100 wagered, e.g. "costs about $2.70 per $100 bet". */
+export function costPer100(rtp: number): string {
+  const delta = (rtp - 1) * 100;
+  return delta < 0
+    ? `Theoretical cost: about $${(-delta).toFixed(2)} per $100 bet, with perfect play`
+    : `Theoretical return: about $${delta.toFixed(2)} gained per $100 bet, with perfect play`;
+}

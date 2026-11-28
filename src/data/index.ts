@@ -21,3 +21,4 @@ export const GOALS = preferenceRules.goals as { id: GoalId; label: string; short
 export const VARIANT_LEVELS = preferenceRules.variantLevels as { minRtp: number; level: Level; reason: string }[];
 
 export const findGame = (id: string): Game | undefined => GAMES.find((g) => g.id === id);
+export const CARD_MAX_COST = preferenceRules.cardMaxCost as number;

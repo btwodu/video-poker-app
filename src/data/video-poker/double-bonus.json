@@ -94,7 +94,8 @@
       "sources": [
         "solver",
         "woo-double-bonus"
-      ]
+      ],
+      "cardRtp": 0.990385
     },
     {
       "id": "double-bonus-965",
@@ -108,7 +109,8 @@
       "sources": [
         "solver",
         "woo-double-bonus"
-      ]
+      ],
+      "cardRtp": 0.97524
     }
   ],
   "tileNote": "Excellent Return",

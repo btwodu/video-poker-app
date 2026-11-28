@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { exactReturn, forEachHand, TOTAL_HANDS } from '../src/engine/rtp';
 import { compileCard } from '../src/strategy/card';
 import { BASE_GAMES } from '../src/data';
-import { knownConfigs } from '../src/games/paytable';
+import { cardFit, knownConfigs } from '../src/games/paytable';
 
 // Recomputes every return and variance in the data files from scratch
 // (2,598,960 deals x 32 holds each). Slow by design: about 3 s per paytable.
@@ -28,17 +28,20 @@ describe('benchmark returns match the published figures', () => {
   }
 });
 
-// Plays all 2,598,960 deals by each printed strategy card and compares with perfect play.
+// Plays all 2,598,960 deals by each strategy card, on every known paytable, and compares with perfect play.
 describe('strategy cards, played line by line over every deal', () => {
   for (const game of BASE_GAMES) {
-    it(`${game.name}: card return matches the data and is within 0.02% of optimal`, () => {
-      const card = compileCard(game.rules, game.strategy.lines);
-      let total = 0;
-      forEachHand(game.rules, game.target.pays, (hand, evs) => { total += evs[card.play(hand).mask]; });
-      const cardRtp = total / TOTAL_HANDS;
-      expect(cardRtp).toBeCloseTo(game.strategy.cardRtp, 5);
-      expect(game.target.rtp - cardRtp).toBeLessThan(0.0002);
-      expect(game.target.rtp - cardRtp).toBeGreaterThanOrEqual(0);
-    });
+    const card = compileCard(game.rules, game.strategy.lines);
+    for (const config of knownConfigs(game)) {
+      it(`${game.name} ${config.label}: measured card return matches the data`, () => {
+        let total = 0;
+        forEachHand(game.rules, config.pays, (hand, evs) => { total += evs[card.play(hand).mask]; });
+        const cardRtp = total / TOTAL_HANDS;
+        expect(cardRtp).toBeCloseTo(config.cardRtp, 5);
+        expect(config.rtp - cardRtp).toBeGreaterThanOrEqual(0);
+        // The benchmark table's card must always be good enough to show.
+        if (config.id === game.target.id) expect(cardFit(config).usable).toBe(true);
+      });
+    }
   }
 });

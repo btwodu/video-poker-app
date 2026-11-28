@@ -94,7 +94,8 @@
       "sources": [
         "solver",
         "woo-deuces"
-      ]
+      ],
+      "cardRtp": 0.987802
     },
     {
       "id": "deuces-44",
@@ -108,7 +109,8 @@
       "variance": 25.619,
       "sources": [
         "solver"
-      ]
+      ],
+      "cardRtp": 0.980394
     }
   ],
   "tileNote": "Wild-card strategy · rare table",

@@ -83,7 +83,8 @@
       "sources": [
         "solver",
         "woo-job"
-      ]
+      ],
+      "cardRtp": 0.984456
     },
     {
       "id": "jacks-86",
@@ -96,7 +97,8 @@
       "sources": [
         "solver",
         "woo-job"
-      ]
+      ],
+      "cardRtp": 0.983913
     },
     {
       "id": "jacks-85",
@@ -110,7 +112,8 @@
       "sources": [
         "solver",
         "woo-job"
-      ]
+      ],
+      "cardRtp": 0.972944
     },
     {
       "id": "jacks-75",
@@ -124,7 +127,8 @@
       "sources": [
         "solver",
         "woo-job"
-      ]
+      ],
+      "cardRtp": 0.961432
     },
     {
       "id": "jacks-65",
@@ -138,7 +142,8 @@
       "sources": [
         "solver",
         "woo-job"
-      ]
+      ],
+      "cardRtp": 0.949921
     }
   ],
   "tileNote": "Bankroll Preservation",

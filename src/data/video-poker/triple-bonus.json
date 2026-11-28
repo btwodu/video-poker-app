@@ -95,7 +95,8 @@
       "sources": [
         "solver",
         "woo-triple-bonus"
-      ]
+      ],
+      "cardRtp": 0.994197
     },
     {
       "id": "triple-bonus-1074",
@@ -108,7 +109,8 @@
       "sources": [
         "solver",
         "woo-triple-bonus"
-      ]
+      ],
+      "cardRtp": 0.983591
     },
     {
       "id": "triple-bonus-974",
@@ -122,7 +124,8 @@
       "sources": [
         "solver",
         "woo-triple-bonus"
-      ]
+      ],
+      "cardRtp": 0.972986
     }
   ],
   "tileNote": "Kings or better · not Triple Double Bonus",

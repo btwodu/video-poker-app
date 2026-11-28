@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import type { BaseGame, GoalId, Pays } from '../data/types';
 import type { ExactResult } from '../engine/rtp';
-import { formatRtp, knownConfigs, matchPaytable } from '../games/paytable';
+import { cardFit, costPer100, formatRtp, knownConfigs, matchPaytable } from '../games/paytable';
+import { StrategyCard } from './StrategyCard';
 import { actualPreference, targetPreference } from '../games/preference';
 import { loadActualPays, saveActualPays } from '../storage/store';
 import { Badge, Page, Section, SourceList, Stepper } from './common';
@@ -40,7 +41,8 @@ export function BaseGameDetail({ game, goal }: { game: BaseGame; goal: GoalId })
   const target = game.target;
   const match = actual ? matchPaytable(game, actual) : null;
   const pref = match ? actualPreference(game, goal, match) : targetPreference(game, goal);
-  const showCard = !match || match.status === 'match';
+  // The card to show: for the table on the machine if one is entered and recognized, else the benchmark.
+  const cardConfig = match ? match.config : knownConfigs(game)[0];
 
   return (
     <Page title={game.name}>
@@ -97,6 +99,7 @@ export function BaseGameDetail({ game, goal }: { game: BaseGame; goal: GoalId })
             <strong>MATCH</strong>
             <span>{match.config.label} {game.name}</span>
             <span>{formatRtp(match.config.rtp)} theoretical return</span>
+            <span>{costPer100(match.config.rtp)}</span>
           </div>
         )}
         {match && (match.status === 'below-target' || match.status === 'above-target') && (
@@ -104,6 +107,7 @@ export function BaseGameDetail({ game, goal }: { game: BaseGame; goal: GoalId })
             <strong>{match.status === 'below-target' ? 'BELOW TARGET' : 'KNOWN TABLE'}</strong>
             <span>{match.config.label} {game.name} · {formatRtp(match.config.rtp)} theoretical return</span>
             {match.diffs.map((d) => <span key={d.key}>{d.label}: {d.actual} instead of {d.target}</span>)}
+            <span>{costPer100(match.config.rtp)}</span>
           </div>
         )}
         {match?.status === 'unknown' && (
@@ -118,29 +122,22 @@ export function BaseGameDetail({ game, goal }: { game: BaseGame; goal: GoalId })
       </Section>
 
       <Section title="Strategy">
-        {showCard ? (
+        {cardConfig && cardFit(cardConfig).usable ? (
           <>
-            <p className="lead">{game.strategy.title}</p>
-            <p className="muted small">{game.strategy.note}</p>
-            <p className="muted small">
-              Followed exactly, this card returns {(game.strategy.cardRtp * 100).toFixed(2)}% — within{' '}
-              {((target.rtp - game.strategy.cardRtp) * 100).toFixed(3)} of a point of perfect play, measured over
-              every possible deal. The trainer grades against perfect play.
-            </p>
-            <ol className="strategy">
-              {game.strategy.lines.map((line, i) => (
-                <li key={i} className={line.group && line.group !== game.strategy.lines[i - 1]?.group ? 'grouped' : ''}>
-                  {line.group && line.group !== game.strategy.lines[i - 1]?.group && <span className="group">{line.group}</span>}
-                  {line.text}
-                </li>
-              ))}
-            </ol>
+            <p className="lead">{cardConfig.label} {game.name} — hold order</p>
+            <StrategyCard game={game} config={cardConfig} />
             <SourceList ids={game.strategy.sources} />
           </>
+        ) : cardConfig ? (
+          <p>
+            No strategy card is shown for the {cardConfig.label} table: the {target.label} card would return{' '}
+            {formatRtp(cardConfig.cardRtp)} here, {(cardFit(cardConfig).cost * 100).toFixed(2)} of a point below
+            perfect play. The trainer below is exact for this table.
+          </p>
         ) : (
           <p>
-            The strategy card is validated for the {target.label} table only and is not shown for a different
-            paytable. The trainer below is still exact: it solves every hand against the table you entered.
+            No strategy card is shown for a paytable that is not in the rulebook. The trainer below is still
+            exact: it solves every hand against the table you entered.
           </p>
         )}
         <a className="btn" href={`#/train/${game.id}`}>

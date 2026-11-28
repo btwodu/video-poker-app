@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { BASE_GAMES, FEATURE_GAMES, GAMES, GOALS, SOURCES, findGame } from '../src/data';
 import type { BaseGame, FeatureGame } from '../src/data/types';
-import { formatRtp, knownConfigs, matchPaytable } from '../src/games/paytable';
+import { cardFit, costPer100, formatRtp, knownConfigs, matchPaytable } from '../src/games/paytable';
 import { actualPreference, targetPreference } from '../src/games/preference';
 import { evaluateState, exitText, totalWager } from '../src/state-engine/evaluate';
 
@@ -35,6 +35,21 @@ describe('paytable matching', () => {
     for (const game of BASE_GAMES) for (const c of knownConfigs(game)) {
       expect(matchPaytable(game, c.pays).config?.id).toBe(c.id);
     }
+  });
+});
+
+describe('strategy card availability by paytable', () => {
+  const config = (game: BaseGame, id: string) => knownConfigs(game).find((c) => c.id === id)!;
+  it('the Jacks card is shown for every known Jacks table', () => {
+    for (const c of knownConfigs(jacks)) expect(cardFit(c).usable, c.id).toBe(true);
+  });
+  it('the full-pay Deuces card is not shown for Not So Ugly Ducks', () => {
+    expect(cardFit(config(deuces, 'deuces-nsud')).usable).toBe(false);
+    expect(cardFit(config(deuces, 'deuces-full-pay')).usable).toBe(true);
+  });
+  it('states long-run cost per $100', () => {
+    expect(costPer100(config(jacks, 'jacks-85').rtp)).toContain('$2.70 per $100');
+    expect(costPer100(doubleBonus.target.rtp)).toContain('$0.17 gained');
   });
 });
 

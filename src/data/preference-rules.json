@@ -1,15 +1,49 @@
 {
   "comment": "How a known lesser paytable is graded. A variant never grades above the target paytable's grade for the same goal.",
   "variantLevels": [
-    { "minRtp": 0.995, "level": "good", "reason": "Below the target paytable but still a strong return" },
-    { "minRtp": 0.985, "level": "situational", "reason": "Noticeably below the target paytable" },
-    { "minRtp": 0, "level": "pass", "reason": "Available paytable is materially below target" }
+    {
+      "minRtp": 0.995,
+      "level": "good",
+      "reason": "Below the target paytable but still a strong return"
+    },
+    {
+      "minRtp": 0.985,
+      "level": "situational",
+      "reason": "Noticeably below the target paytable"
+    },
+    {
+      "minRtp": 0,
+      "level": "pass",
+      "reason": "Available paytable is materially below target"
+    }
   ],
   "goals": [
-    { "id": "preserve", "label": "Preserve / Build Bankroll", "short": "Bankroll" },
-    { "id": "return", "label": "Highest Theoretical Return", "short": "Return" },
-    { "id": "state", "label": "Persistent-State Opportunities", "short": "State" },
-    { "id": "rewards", "label": "Rewards / Coin-In", "short": "Coin-In" },
-    { "id": "practice", "label": "Practice / Learn", "short": "Practice" }
-  ]
+    {
+      "id": "preserve",
+      "label": "Preserve / Build Bankroll",
+      "short": "Bankroll"
+    },
+    {
+      "id": "return",
+      "label": "Highest Theoretical Return",
+      "short": "Return"
+    },
+    {
+      "id": "state",
+      "label": "Persistent-State Opportunities",
+      "short": "State"
+    },
+    {
+      "id": "rewards",
+      "label": "Rewards / Coin-In",
+      "short": "Coin-In"
+    },
+    {
+      "id": "practice",
+      "label": "Practice / Learn",
+      "short": "Practice"
+    }
+  ],
+  "cardMaxCost": 0.0002,
+  "cardMaxCostComment": "A strategy card is shown for a paytable only if playing it line by line costs no more than this against perfect play."
 }

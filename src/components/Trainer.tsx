@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { BaseGame } from '../data/types';
 import { cardLabel, cardsInMask, rankOf, suitOf } from '../engine/cards';
-import { matchPaytable } from '../games/paytable';
+import { cardFit, matchPaytable } from '../games/paytable';
+import { StrategyCard } from './StrategyCard';
 import { emptyStats, loadActualPays, loadStats, saveStats, type TrainerStats } from '../storage/store';
 import { gradeAnswer, labelHold, nextQuestion, recordAnswer, weakSpots, type Grade, type Question } from '../trainer/engine';
 import { Page, Section } from './common';
@@ -105,6 +106,13 @@ export function Trainer({ game }: { game: BaseGame }) {
           </>
         )}
       </Section>
+
+      {match.config && cardFit(match.config).usable && (
+        <details className="card quick-card">
+          <summary>Strategy card — quick reference</summary>
+          <StrategyCard game={game} config={match.config} />
+        </details>
+      )}
 
       <Section title="Commonly missed">
         {weak.length === 0 ? <p className="muted">No mistakes recorded yet.</p> : (

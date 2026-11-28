@@ -189,3 +189,6 @@ select, .field input {
 .observation p { margin: 2px 0; }
 .observation-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
 .observation .btn { width: auto; padding: 0 16px; margin-top: 6px; }
+
+.quick-card summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font: 600 11px var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+.quick-card[open] summary { margin-bottom: 8px; border-bottom: 1px solid var(--rule); }

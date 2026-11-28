@@ -92,7 +92,8 @@
       "variance": 20.7538,
       "sources": [
         "solver"
-      ]
+      ],
+      "cardRtp": 0.980115
     },
     {
       "id": "bonus-65",
@@ -104,7 +105,8 @@
       "variance": 20.6547,
       "sources": [
         "solver"
-      ]
+      ],
+      "cardRtp": 0.968603
     }
   ],
   "tileNote": "Steady, Jacks-style play",
